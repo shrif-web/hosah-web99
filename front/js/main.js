@@ -1,7 +1,7 @@
 const SERVER_IP = "193.151.128.53"
 
 function getFormAsJson(formId) {
-  const data = $(formId).serializeArray().reduce(function(obj, item) {
+  const data = $(`#${formId}`).serializeArray().reduce(function(obj, item) {
     obj[item.name] = parseFloat(item.value)
     return obj
   }, {})
