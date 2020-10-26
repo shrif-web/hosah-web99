@@ -9,12 +9,15 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 )
+
+var workingDir string
 
 type JSONFloat64 struct {
 	Value float64
@@ -86,7 +89,8 @@ func check(e error) {
 }
 
 func getLineFromFile(w http.ResponseWriter, r *http.Request) {
-	err := godotenv.Load()
+	environmentPath := filepath.Join(workingDir+"/backend", ".env")
+	err := godotenv.Load(environmentPath)
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -128,6 +132,11 @@ func getLineFromFile(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		log.Fatal("Working directory should be passed as first argument")
+	}
+	workingDir = os.Args[1]
+
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/go/sha256/", getSumAsSHA).Methods("POST")
