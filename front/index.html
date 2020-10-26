@@ -25,15 +25,16 @@
     </div>
     <div class="ui container" id="main_container">
 
-        <div class="ui positive message transition hidden" id="sha256_result_container">
-            <i class="close icon"></i>
-            <div class="header">
-                Result
-            </div>
-            <p id="sha256_result"></p>
-        </div>
 
         <div class="ui stacked segment" id="numbers_container">
+            <div class="ui message transition hidden" id="sha256_result_container">
+                <i class="close icon"></i>
+                <div class="header">
+                    Result
+                </div>
+                <p id="sha256_result"></p>
+            </div>
+
             <form class="ui form" id="numbers_form">
                 <h4 class="ui dividing header">Get SHA-256 hash of sum of two numbers</h4>
                 <div class="field">
@@ -58,13 +59,23 @@
             </form>
         </div>
 
+
+        
         <div class="ui stacked segment" id="lineno_container">
+            <div class="ui message transition hidden" id="lineno_result_container">
+                <i class="close icon"></i>
+                <div class="header">
+                    Result
+                </div>
+                <p id="lineno_result"></p>
+            </div>
+
             <form class="ui form" id="lineno_form">
                 <h4 class="ui dividing header">Read n-th line from file</h4>
                 <div class="field">
                     <label>Line Number</label>
                     <div class="field">
-                        <input type="number" name="num2" placeholder="Line Number">
+                        <input type="number" name="lineno" id="lineno" placeholder="Line Number">
                     </div>
                 </div>
                 <button class="ui green button" id="nodejs_lineno">

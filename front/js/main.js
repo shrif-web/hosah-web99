@@ -5,7 +5,6 @@ function getFormAsJson(formId) {
     obj[item.name] = parseFloat(item.value)
     return obj
   }, {})
-  console.log(JSON.stringify(data))
   return data
 }
 
@@ -14,15 +13,20 @@ function resetNumbersForm() {
   $("#num2").val('')
 }
 
-function setSHAResult(sum) {
-  $("#sha256_result_container").removeClass("hidden")
-  $("#sha256_result").text(`SHA hashed sum is ${sum}`)
+function resetLinenoForm() {
+  $("#lineno").val('')
 }
 
-function setSHAError(message) {
-  $("#sha256_result_container").removeClass("positive hidden")
-  $("#sha256_result_container").addClass("negative")
-  $("#sha256_result").text(`Error: ${message}`)
+function setFormResult(formId, result) {
+  $(`#${formId}_result_container`).removeClass("negative hidden")
+  $(`#${formId}_result_container`).addClass("positive")
+  $(`#${formId}_result`).text(result)
+}
+
+function setFormError(formName, message) {
+  $(`#${formName}_result_container`).removeClass("positive hidden")
+  $(`#${formName}_result_container`).addClass("negative")
+  $(`#${formName}_result`).text(`Error: ${message}`)
 }
 
 $(document).ready(function() {
@@ -38,37 +42,50 @@ $(document).ready(function() {
   })
 
   $("#golang_sha").click(function() {
+    if ($("#num1").val() === '' || $("#num2").val() === '') {
+      setFormError('sha256', 'Please enter two valid numbers.')
+      return
+    }
     $.getJSON({
         method: "POST",
-        // url: `http://${SERVER_IP}/go/sha256/`,
-        url: `http://127.0.0.1:8080/go/sha256/`,
+        url: `http://${SERVER_IP}/go/sha256/`,
         dataType: 'json',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(getFormAsJson("numbers_form"))
       })
       .done(function(response) {
         resetNumbersForm()
-        setSHAResult(response["sum"])
+        setFormResult('sha256', `SHA hashed sum is ${response["sum"]}`)
       })
       .fail(function(e) {
-        setSHAError(response["message"])
+        setFormError('sha256', e.responseJSON["message"])
       })
   })
-})
 
-$("#golang_lineno").click(function() {
-  $.getJSON({
-    method: "POST",
-    // url: `http://${SERVER_IP}/go/sha256/`,
-    url: `http://127.0.0.1:8080/go/write/`,
-    dataType: 'json',
-    contentType: 'application/json;charset=UTF-8',
-    data: JSON.stringify(getFormAsJson("lineno_form"))
-  })
-  .done(function(response) {
-    console.log(response)
-  })
-  .fail(function(e) {
-    console.log(e)
+  $("#golang_lineno").click(function() {
+    let lineno = $("#lineno").val()
+    if (lineno === '') {
+      setFormError('lineno', 'Please enter a number between 1 and 100.')
+      return
+    }
+    try {
+      lineno = parseInt(lineno)
+    } catch (e) {
+      setFormError('lineno', 'Please enter a number between 1 and 100.')
+      return
+    }
+    $.getJSON({
+        method: "GET",
+        url: `http://${SERVER_IP}/go/write/?lineno=${lineno}`,
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8'
+      })
+      .done(function(response) {
+        resetLinenoForm()
+        setFormResult('lineno', `Line ${lineno}: ${response}`)
+      })
+      .fail(function(e) {
+        setFormError('lineno', e.responseJSON["message"])
+      })
   })
 })
