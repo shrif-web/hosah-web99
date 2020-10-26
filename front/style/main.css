@@ -1,0 +1,19 @@
+#footer {
+    border-radius: 0;
+}
+
+#main_container {
+    margin-top: 5em;
+    min-height: 80vh;
+}
+
+#navbar {
+    border-radius: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#lineno_container {
+    margin-top: 10vh;
+}

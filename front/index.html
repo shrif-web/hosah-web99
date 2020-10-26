@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="./js/main.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css" />
+    <link rel="stylesheet" href="./style/main.css" type="text/css" />
+
+    <title>تمرین اول</title>
+</head>
+
+<body>
+    <div class="ui borderless inverted menu" id="navbar">
+        <div class="ui container">
+            <a class="header item" href="">HW1</a>
+            <a class="item" href="">Home</a>
+        </div>
+    </div>
+    <div class="ui container" id="main_container">
+
+        <div class="ui positive message transition hidden" id="sha256_result_container">
+            <i class="close icon"></i>
+            <div class="header">
+                Result
+            </div>
+            <p id="sha256_result"></p>
+        </div>
+
+        <div class="ui stacked segment" id="numbers_container">
+            <form class="ui form" id="numbers_form">
+                <h4 class="ui dividing header">Get SHA-256 hash of sum of two numbers</h4>
+                <div class="field">
+                    <label>Numbers</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="number" id="num1" name="num1" placeholder="First Number" step="0.001">
+                        </div>
+                        <div class="field">
+                            <input type="number" id="num2" name="num2" placeholder="Second Number" step="0.001">
+                        </div>
+                    </div>
+                </div>
+                <button class="ui green button" id="nodejs_sha">
+                    <i class="node icon"></i>
+                    Node.js Endpoint
+                </button>
+                <button class="ui blue button" id="golang_sha">
+                    <i class="google icon"></i>
+                    Golang Endpoint
+                </button>
+            </form>
+        </div>
+
+        <div class="ui stacked segment" id="lineno_container">
+            <form class="ui form" id="lineno_form">
+                <h4 class="ui dividing header">Read n-th line from file</h4>
+                <div class="field">
+                    <label>Line Number</label>
+                    <div class="field">
+                        <input type="number" name="num2" placeholder="Line Number">
+                    </div>
+                </div>
+                <button class="ui green button" id="nodejs_lineno">
+                    <i class="node icon"></i>
+                    Node.js Endpoint
+                </button>
+                <button class="ui blue button" id="golang_lineno">
+                    <i class="google icon"></i>
+                    Golang Endpoint
+                </button>
+            </form>
+        </div>
+    </div>
+    <footer class="ui inverted segment" id="footer">
+        <div class="ui center aligned container">
+            <div class="eight wide column centered">
+                <h4 class="ui inverted header">اعضای گروه</h4>
+                <p>حسین علی‌مدد&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;احمد کریمی</p>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="">Github</a>
+                <a class="item" href="">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
