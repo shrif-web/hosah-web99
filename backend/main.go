@@ -12,6 +12,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 )
 
@@ -85,6 +86,12 @@ func check(e error) {
 }
 
 func getLineFromFile(w http.ResponseWriter, r *http.Request) {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	linesFile := os.Getenv("LINES_FILE")
+
 	linenoStr := r.URL.Query().Get("lineno")
 	if linenoStr == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -98,7 +105,7 @@ func getLineFromFile(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Message: "Line number should be between 1 and 100"})
 		return
 	}
-	f, err := os.Open("./lines.txt")
+	f, err := os.Open(linesFile)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(ErrorResponse{Message: "Error reading file"})
