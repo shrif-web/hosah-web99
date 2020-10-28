@@ -1,7 +1,9 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 
 const router = express.Router();
+const linesTextPath = path.join(__dirname, '..', 'lines.txt');
 
 router.get('/', (req, res) => {
   const lineNumber = parseInt(req.query.lineno, 10);
@@ -15,9 +17,10 @@ router.get('/', (req, res) => {
     return;
   }
 
-  fs.readFile('../lines.txt', 'utf8', (err, data) => {
+  fs.readFile(linesTextPath, 'utf8', (err, data) => {
     if (err) {
       console.log(err);
+
       res.status(500).json({
         message: 'An error occured',
       });
