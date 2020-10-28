@@ -4,7 +4,7 @@ const writeRoute = require('./routes/write');
 const sha256Route = require('./routes/sha256');
 
 const app = express();
-const port = 3000;
+const port = 8081;
 
 app.use(express.json());
 app.use('/write', writeRoute);
