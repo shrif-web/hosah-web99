@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
-const linesTextPath = path.join(__dirname, '..', 'lines.txt');
+const linesTextPath = path.join(__dirname, '..', '..', 'lines.txt');
 
 router.get('/', (req, res) => {
   const lineNumber = parseInt(req.query.lineno, 10);
