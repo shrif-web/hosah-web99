@@ -62,10 +62,10 @@ function submitLineNumberForm(apiUrl) {
     setFormError('lineno', 'Please enter a number between 1 and 100.')
     return
   }
-  return $.getJSON({
+  return $.get({
       method: "GET",
       url: apiUrl,
-      dataType: 'json',
+      dataType: 'text',
       contentType: 'application/json;charset=UTF-8',
       data: { lineno }
     })
