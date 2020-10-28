@@ -1,0 +1,34 @@
+{
+  "name": "hw1-nodejs-backend",
+  "version": "0.0.1",
+  "description": "The node backend for HW1",
+  "main": "index.js",
+  "repository": "git@github.com:therealak12/WEB99-HW1.git",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint ./",
+    "precommit": "eslint"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sjcl": "^1.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.0"
+  },
+  "author": "Hossein Alimadad/Ahmad Karimi",
+  "license": "MIT",
+  "private": false,
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "airbnb-base"
+    ],
+    "env": {
+      "node": true
+    }
+  }
+}
