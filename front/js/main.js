@@ -99,10 +99,10 @@ $(document).ready(function() {
   })
 
   $("#golang_lineno").click(function() {
-    sumbitLineNumberForm(`http://${SERVER_IP}/go/write/`)
+    submitLineNumberForm(`http://${SERVER_IP}/go/write/`)
   })
 
   $("#nodejs_lineno").click(function() {
-    sumbitLineNumberForm(`http://${SERVER_IP}/nodejs/write/`)
+    submitLineNumberForm(`http://${SERVER_IP}/nodejs/write/`)
   })
 })
