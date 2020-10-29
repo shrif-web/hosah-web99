@@ -2,3 +2,5 @@
 .env
 backend/server
 node_modules/
+venv
+__pycacheــ
