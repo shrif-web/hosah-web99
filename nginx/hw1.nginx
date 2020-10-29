@@ -1,0 +1,29 @@
+server {
+	listen 80;
+	server_name		193.151.128.53;
+
+	location / {
+		root /home/hosah/hw1/front/;
+		index /home/hosah/hw1/front/index.html;
+		try_files $uri /index.html;
+	}
+	location /style {
+		root /home/hosah/hw1/front/;
+	}
+	location /js {
+		root /home/hosah/hw1/front/;
+	}
+	location /assets {
+		root /home/hosah/hw1/front/;
+	}
+
+	location /go {
+		include								proxy_params;
+		proxy_pass							http://127.0.0.1:8080/go;
+	}
+
+	location /nodejs/ {
+		include								proxy_params;
+		proxy_pass							http://127.0.0.1:8081/;
+	}
+}

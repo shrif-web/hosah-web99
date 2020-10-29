@@ -1,0 +1,12 @@
+[Unit]
+Description=HW1 NodeJS Backend
+
+[Service]
+Type=simple
+User=hosah
+Restart=always
+RestartSec=5s
+ExecStart=/usr/bin/node /home/hosah/hw1/backend/nodejs/index.js
+
+[Install]
+WantedBy=multi-user.target
