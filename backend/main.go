@@ -128,7 +128,7 @@ func getLineFromFile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(line)
+	w.Write([]byte(line))
 }
 
 func main() {
