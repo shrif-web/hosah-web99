@@ -74,7 +74,8 @@ function submitLineNumberForm(apiUrl) {
       setFormResult('lineno', `Line ${lineno}: ${response}`)
     })
     .fail(function(e) {
-      setFormError('lineno', e.responseJSON["message"])
+      const message = JSON.parse(e.responseText).message
+      setFormError('lineno', message)
     })
 }
 
