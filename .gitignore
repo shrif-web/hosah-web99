@@ -3,4 +3,4 @@
 backend/server
 node_modules/
 venv
-__pycacheــ
+__pycache__/

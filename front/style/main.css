@@ -17,3 +17,12 @@
 #lineno_container {
     margin-top: 10vh;
 }
+
+.button-container {
+    margin: -0.375em 0;
+}
+
+.button-container > .ui.button {
+    margin-top: 0.375em;
+    margin-bottom: 0.375em;
+}
